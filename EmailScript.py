@@ -15,9 +15,9 @@ def get_ip():
     
 def send_email(ip_address):
     # Setting up variables
-    from_email = 'donotreply.psg@afiniti.com'
-    to_email = 'muhammad.faraz@afiniti.com'
-    smtp_server = 'afinitismtp.afiniti.com'
+    from_email = 'myemail'
+    to_email = 'youremail'
+    smtp_server = 'SMTP Server'
     current_time = datetime.now().strftime("%H:%M:%S")
 
     # Connecting to Server
