@@ -16,10 +16,10 @@ def get_ip():
 def send_email(ip_address):
     
     # Setting up variables
-    from_email = 'acta.Verba@mail.com'
-    to_email = 'afinit.psg@afiniti.com'
+    from_email = ''
+    to_email = ''
     my_password = 'passworD'
-    smtp_server = 'smtp.afiniti.com'
+    smtp_server = ''
 
     # Connecting to Server
     server = smtplib.SMTP(smtp_server, 507)
