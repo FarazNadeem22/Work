@@ -150,6 +150,6 @@ def get_analytics(df):
     return df_return.T
 
 
-path = 'C:\\Users\\muhammad.faraz\\Desktop\\Farmers\\farmers_contextual\\'
+path = 'C:\\Users\\muhammad.faraz\\Desktop\\Fa****s\\fa****s_contextual\\'
 # change_file_name(path)
 get_files(path)
