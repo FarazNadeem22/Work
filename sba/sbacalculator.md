@@ -17,7 +17,7 @@ These details provide the basis for calculating the monthly payment on the loan,
 
 To calculate the monthly payment on the loan, we utilize a loan amortization formula. One common formula used is as follows:
 
-\[ M = \dfrac{P \times r \times (1+r)^n}{(1+r)^n - 1} \]
+M = \dfrac{P \times r \times (1+r)^n}{(1+r)^n - 1}
 
 Where:
 - \( M \) = Monthly payment
