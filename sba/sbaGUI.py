@@ -19,6 +19,32 @@ def calculate_monthly_payment(principal, interest_rate, periods):
     monthly_payment = numerator / denominator
     return monthly_payment
 
+def generate_amortization_schedule(principal, interest_rate, periods):
+    """
+    Generate an amortization schedule for a loan.
+
+    Args:
+        principal (float): The loan amount (principal).
+        interest_rate (float): The annual interest rate (in percentage).
+        periods (int): The total number of payment periods.
+
+    Returns:
+        list: A list of tuples representing each payment period with (Month, Interest, Principal, Remaining Balance).
+    """
+    monthly_payment = calculate_monthly_payment(principal, interest_rate, periods)
+    monthly_interest_rate = interest_rate / 100 / 12
+    remaining_balance = principal
+    amortization_schedule = []
+
+    for month in range(1, periods + 1):
+        interest_payment = remaining_balance * monthly_interest_rate
+        principal_payment = monthly_payment - interest_payment
+        remaining_balance -= principal_payment
+
+        amortization_schedule.append((month, interest_payment, principal_payment, remaining_balance))
+
+    return amortization_schedule
+
 def calculate():
     """Calculate the monthly payment and display the result."""
     try:
@@ -27,6 +53,13 @@ def calculate():
         periods = int(periods_entry.get())
         monthly_payment = calculate_monthly_payment(principal, interest_rate, periods)
         result_label.config(text="Monthly payment: ${:,.2f}".format(monthly_payment))
+
+        # Generate and display amortization schedule
+        amortization_schedule = generate_amortization_schedule(principal, interest_rate, periods)
+        schedule_text.delete(1.0, tk.END)
+        for item in amortization_schedule:
+            schedule_text.insert(tk.END, f"{item}\n")
+
     except ValueError:
         messagebox.showerror("Error", "Please enter valid numbers")
 
@@ -36,6 +69,7 @@ def clear():
     interest_rate_entry.delete(0, tk.END)
     periods_entry.delete(0, tk.END)
     result_label.config(text="")
+    schedule_text.delete(1.0, tk.END)
 
 def exit_program():
     """Exit the program."""
@@ -74,5 +108,9 @@ exit_button.grid(row=3, column=2, padx=5, pady=5)
 # Display result
 result_label = tk.Label(root, text="")
 result_label.grid(row=4, column=0, columnspan=3, padx=5, pady=5)
+
+# Amortization schedule text box
+schedule_text = tk.Text(root, height=10, width=50)
+schedule_text.grid(row=5, column=0, columnspan=3, padx=5, pady=5)
 
 root.mainloop()
